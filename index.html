@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Clément Lenoble</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {extend:{fontFamily:{inter:['Inter','sans-serif']},colors:{accent:{DEFAULT:'#222',dark:'#111',light:'#555'},surface:{light:'#f8f9fa',dark:'#18181b'}},boxShadow:{glass:'0 8px 40px 0 rgb(30 30 30 / 0.08)'}}}
+    }
+  </script>
+   <style>
+   @media (min-width: 901px) {
+  nav {
+    margin-top: 1.5rem !important;
+  }
+}
+@media (min-width:901px){
+  nav {
+    transition: width 0.4s cubic-bezier(.4,0,.2,1), left 0.4s cubic-bezier(.4,0,.2,1);
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    min-width: max-content !important;
+  }
+}
+@media (max-width:900px){
+  nav {
+    height: 40px !important;
+    min-height: 40px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* --- FOND NAVBAR TRANSPARENT + FLOU --- */
+nav {
+  background: rgba(255,255,255,0.15) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 0 38px 0 rgba(0,0,0,0.09);
+  border-radius:2.5rem!important;
+  border:1px solid rgba(0,0,0,0.07);
+}
+.dark nav {
+  background: rgba(24,24,27,0.08) !important;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.16),0 0 0 8px rgba(31,161,199,0.13),0 0 36px 0 rgba(31,161,199,0.10);
+  border:1px solid rgba(24,24,27,0.13);
+  border-radius:2.5rem!important;
+}
+
+/* Hamburger bouton mobile avec fond transparent et flou */
+.mobile-menu-trigger, .mobile-overlay-menu .close-btn {
+  width: 3rem;
+  height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  border-radius: 0.9rem;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.dark .mobile-menu-trigger {
+  background: rgba(24,24,27,0.08)!important;
+  border: 1.5px solid #232323;
+}
+
+/* --- RESTE DE TON STYLE --- */
+.bg-accent,
+.bg-accent-dark,
+.hover\:bg-accent:hover,
+.hover\:bg-accent-dark:hover {
+  background: #18181b!important;
+  color: #fff!important;
+  border-color: #18181b!important;
+}
+.bg-accent-dark,
+.hover\:bg-accent-dark:hover { background: #222!important; }
+.text-accent,
+.hover\:text-accent:hover { color: #18181b!important; }
+.border-accent { border-color: #18181b!important; }
+.pill, .skill-chip {
+  background: #f5f5f5!important;
+  color: #18181b!important;
+  border-color: #222!important;
+}
+.pill:hover, .skill-chip:hover, .skill-chip:focus {
+  background: #e5e5e5!important;
+  color: #18181b!important;
+  border-color: #18181b!important;
+}
+.timeline-dot { background: #18181b!important; border-color: #fff!important; }
+.dark .timeline-dot { background: #222!important; border-color: #18181b!important; }
+h2, h3, .timeline-title { color: #18181b!important; }
+.dark h2, .dark h3, .dark .timeline-title { color: #fff!important; }
+nav ul li a.active,
+nav ul li a:hover,
+nav ul li a:focus { color: #18181b!important; border-bottom:2px solid #18181b; }
+#scrollTopBtn { background: #18181b; }
+#scrollTopBtn:hover { background: #222; }
+footer { color: #222!important; }
+body.bg-surface-light, body, .bg-white, .bg-white\/90 {
+  background: #fff!important;
+  color: #18181b!important;
+}
+section, .rounded-3xl, .max-w-3xl, .max-w-5xl, .timeline-img {
+  background: #fff!important;
+  color: #18181b!important;
+}
+.timeline-title { color: #18181b!important; }
+.timeline-date {
+  background: #f5f5f5!important;
+  color: #18181b!important;
+  border-color: #222!important;
+}
+.pill { background: #f5f5f5!important; color: #18181b!important; }
+.social-link { color: #18181b!important; }
+#drawer-menu, .dark #drawer-menu { background: #fff!important; color: #18181b!important; }
+body { cursor: auto; }
+.pill {
+  background: #222;
+  color: #fff;
+  padding: 0.2rem 0.7rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.91rem;
+  box-shadow: 0 2px 6px rgba(34,34,34,0.15);
+  transition: background 0.3s, color 0.3s;
+  line-height: 1.6;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.pill:hover { background: #111; color: #fff; }
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.38em 1em 0.38em 0.95em;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #222;
+  background: #fff;
+  border: 1.5px solid #e6e6e6;
+  border-radius: 2em;
+  box-shadow: 0 1.5px 6px 0 rgba(20,20,20,0.02);
+  transition: border 0.22s, box-shadow 0.22s;
+  margin-bottom: 0.15em;
+}
+.skill-chip::before {
+  content: '';
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.25em;
+  background: url('data:image/svg+xml;utf8,<svg width="16" height="16" fill="none" stroke="black" stroke-width="2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M4 8.5l3 3 5-6"/></svg>') no-repeat center center/1em 1em;
+}
+.skill-chip:hover, .skill-chip:focus {
+  border: 1.5px solid #bbb;
+  box-shadow: 0 3px 16px 0 rgba(40,40,40,0.10);
+}
+.dark .skill-chip {
+  background: #232323;
+  color: #f1f1f1;
+  border-color: #333;
+}
+.dark .skill-chip::before {
+  background: url('data:image/svg+xml;utf8,<svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M4 8.5l3 3 5-6"/></svg>') no-repeat center center/1em 1em;
+}
+.social-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1.7rem; }
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: none!important;
+  color: #222;
+  transition: color 0.3s, background 0.3s;
+  font-size: 1.5rem;
+  box-shadow: none;
+  text-decoration: none;
+  border: none;
+  padding: 0;
+}
+.social-link:hover { color: #111; background: none!important; }
+.dark .social-link { background: none!important; color: #f1f1f1; }
+.dark .social-link:hover { color: #fff; background: none!important; }
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #222;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 15px rgb(34 34 34 / 0.3);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+  z-index: 1000;
+  user-select: none;
+}
+#scrollTopBtn.show { opacity: 1; visibility: visible; }
+.dark body { background-color: #18181b; color: #f1f1f1; }
+.dark #scrollTopBtn { background: #111; box-shadow: 0 4px 15px rgb(34 34 34 / 0.2); }
+nav ul li a.active { color: #222!important; border-bottom:2px solid #222; }
+nav ul li a {
+  transition: color 0.3s cubic-bezier(0.4,0,0.2,1),transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #111;
+  transform: scale(1.12);
+  text-decoration: none;
+  border-bottom:2px solid #222;
+}
+footer { color: #888; text-align: center; padding: 1.5rem 0 0.5rem 0; font-size: 1rem; }
+.timeline-ol {
+  position: relative;
+  border-left: 2px solid #ddd;
+  margin-left: 1.1rem;
+  padding-left: 0.5rem;
+}
+.dark .timeline-ol { border-color: #232323; }
+.timeline-li {
+  position: relative;
+  margin-bottom: 2.8rem;
+  padding-left: 1.8rem;
+}
+.timeline-li:last-child { margin-bottom:0; }
+.timeline-dot {
+  position: absolute;
+  left: -1.1rem;
+  top: 0.25rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background: #222;
+  border-radius: 999px;
+  z-index: 2;
+  border: 4px solid #fff;
+  box-shadow: 0 0 8px #3337;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dark .timeline-dot { background: #111; border-color: #1a1a1a; }
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.timeline-title { font-size: 1.13rem; font-weight: 700; margin-bottom: 0.15em; color: #18181b; }
+.dark .timeline-title { color: #f1f1f1; }
+.timeline-date {
+  background: var(--pool-blue-light);
+  color: var(--pool-blue-dark);
+  font-weight: 600;
+  font-size: 0.91rem;
+  padding: 0 1em;
+  border-radius: 999px;
+  margin-left: 0.7em;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  border: 1.5px solid var(--pool-blue);
+  transition: background 0.2s, color 0.2s;
+}
+.dark .timeline-date {
+  background: var(--pool-blue-dark);
+  color: #fff;
+  border-color: var(--pool-blue);
+}
+.timeline-tech { color: #555; font-size: 0.93rem; margin-bottom: 0.2em; margin-top: 0.25em; }
+.dark .timeline-tech { color: #ccc; }
+.timeline-desc { font-size: 0.99rem; color: #222; margin-bottom: 0.2em; margin-top: 0.25em; }
+.dark .timeline-desc { color: #f1f1f1; }
+.timeline-ul {
+  list-style: disc inside;
+  margin-left: 0;
+  padding-left: 0;
+  color: #18181b;
+  font-size: 0.98rem;
+  margin-bottom: 0.6em;
+}
+.dark .timeline-ul { color: #fff; }
+.timeline-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px #23232329;
+  border: 2px solid #ddd;
+  background: #fff;
+  margin-right: 1rem;
+}
+.dark .timeline-img { border-color: #232323; background: #1a1a1a; }
+.timeline-project-content { display: flex; align-items: flex-start; gap: 1.25rem; }
+@media (max-width:600px){
+  .timeline-project-content{flex-direction:column;gap:0.5rem;}
+  .timeline-img{margin-right:0;}
+}
+@media (max-width:700px){
+  nav{left:50%!important;transform:translateX(-50%)!important;width:98vw!important;min-width:unset!important;max-width:98vw!important;padding-left:0.5rem!important;padding-right:0.5rem!important;gap:0.5rem!important;}
+  nav ul{flex-direction:column!important;gap:0.5rem!important;background:rgba(255,255,255,0.97)!important;border-radius:1.5rem!important;box-shadow:0 4px 24px 0 rgba(63,208,232,0.10);position:absolute;top:3.5rem;left:0.5rem;right:0.5rem;z-index:100;padding:1rem 0.5rem;display:none;}
+  nav ul.show{display:flex!important;}
+  nav .menu-toggle{display:flex!important;margin-left:auto;}
+  .hero-content{flex-direction:column!important;gap:2rem!important;padding:1.2rem!important;text-align:center;}
+  .timeline-project-content{flex-direction:column!important;gap:0.7rem!important;}
+  .timeline-img{margin-right:0!important;margin-bottom:0.5rem!important;width:90px!important;height:90px!important;}
+  .grid-cols-1,.md\:grid-cols-3{grid-template-columns:1fr!important;}
+  .max-w-3xl,.max-w-5xl{max-width:99vw!important;}
+  section,.rounded-3xl{border-radius:1.2rem!important;}
+  .px-4,.sm\:px-8{padding-left:0.5rem!important;padding-right:0.5rem!important;}
+  .skill-chip,.pill{font-size:1rem!important;padding:0.5em 1.2em!important;margin-bottom:0.3em!important;}
+  .flex-col.sm\:flex-row{flex-direction:column!important;gap:1rem!important;}
+  .social-links{gap:1rem!important;}
+  .timeline-header{flex-direction:column!important;align-items:flex-start!important;gap:0.3rem!important;}
+  .timeline-date{margin-left:0!important;margin-top:0.2em!important;}
+  .hero-content{margin-top:2rem!important;}
+  main{padding-top:3.2rem!important;}
+  html{font-size:15px!important;}
+  h1,h2,h3{font-size:1.2em!important;}
+  .text-4xl{font-size:2rem!important;}
+  .text-3xl{font-size:1.5rem!important;}
+  .text-2xl{font-size:1.2rem!important;}
+  .text-xl{font-size:1.05rem!important;}
+  .text-lg{font-size:0.98rem!important;}
+  .hero-content,section,.max-w-3xl,.max-w-5xl{padding-left:0.2rem!important;padding-right:0.2rem!important;}
+  .rounded-3xl{border-radius:0.7rem!important;}
+  .skill-chip,.pill{font-size:0.93rem!important;padding:0.4em 0.9em!important;}
+  .timeline-img{width:70px!important;height:70px!important;}
+  .menu-content{font-size:1rem!important;}
+  #hero.hero-content{flex-direction:row!important;align-items:center!important;gap:1.2rem!important;text-align:left!important;}
+  #hero.hero-content>div{align-items:flex-start!important;text-align:left!important;}
+  main,.max-w-3xl,.max-w-5xl,section,.hero-content,.rounded-3xl{transform:scale(0.97);margin-left:auto!important;margin-right:auto!important;}
+}
+.menu-toggle{display:none;flex-direction:column;justify-content:center;align-items:center;width:2.5rem;height:2.5rem;border-radius:9999px;background:var(--pool-blue-light);border:none;cursor:pointer;margin-left:0.5rem;transition:background 0.2s;}
+.menu-toggle span{display:block;width:1.6rem;height:0.22rem;background:var(--pool-blue-dark);margin:0.18rem 0;border-radius:2px;transition:all 0.3s;}
+.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.menu-toggle.open span:nth-child(2){opacity:0;}
+.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-overlay-menu{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(255,255,255,0.18);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.35s cubic-bezier(.4,0,.2,1);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+}
+.mobile-overlay-menu.open{opacity:1;pointer-events:auto;}
+.mobile-overlay-menu .menu-content{transform:translateY(-40px);opacity:0;transition:transform 0.45s cubic-bezier(.4,0,.2,1),opacity 0.35s cubic-bezier(.4,0,.2,1);}
+.mobile-overlay-menu.open .menu-content{transform:translateY(0);opacity:1;}
+.mobile-overlay-menu .menu-header{width:100%;display:flex;align-items:center;justify-content:flex-start;padding:0;}
+.mobile-overlay-menu .close-btn{
+  position:fixed;
+  top:1.5rem;
+  left:1rem;
+  z-index:1001;
+  width:3rem;
+  height:3rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  border:1.5px solid #e5e5e5;
+  border-radius:9999px;
+  font-size:2rem;
+  color:#222;
+  cursor:pointer;
+  padding:0;
+  box-shadow:0 2px 8px #23232314;
+  transition:background 0.2s,color 0.2s;
+}
+.mobile-overlay-menu .close-btn:focus,
+.mobile-overlay-menu .close-btn:hover{background:#eee;color:#18181b;}
+@media (min-width:901px){.mobile-overlay-menu .close-btn{display:none;}}
+.mobile-overlay-menu .menu-content{
+  width:90%;
+  max-width:340px;
+  margin:2.1rem auto 0 auto;
+  background:rgba(255,255,255,0.15);
+  border-radius:1.3rem;
+  box-shadow:0 8px 40px 0 rgb(30 30 30 / 0.13);
+  padding:2rem 1.2rem 1.2rem 1.2rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.3rem;
+}
+.dark .mobile-overlay-menu .menu-content{background:rgba(24,24,27,0.08);border-radius:1.3rem;}
+.mobile-overlay-menu .menu-content a{
+  font-size:1.13rem;
+  color:#222c38;
+  font-weight:500;
+  text-decoration:none;
+  border-radius:0.7rem;
+  padding:0.5rem 0.8rem;
+  transition:color 0.2s,background 0.2s;
+  text-align:left;
+}
+.mobile-overlay-menu .menu-content a:last-child{
+  margin-top:1.3rem;
+  background:#181c26;
+  color:#fff;
+  font-weight:600;
+  font-size:1.08rem;
+  letter-spacing:0.02em;
+  border-radius:0.7rem;
+  border:none;
+  transition:background 0.2s,color 0.2s;
+  cursor:pointer;
+  height:2.6rem;
+  line-height:2.6rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.mobile-overlay-menu .menu-content a:last-child:hover,
+.mobile-overlay-menu .menu-content a:last-child:focus{background:#222;}
+@media (min-width:901px){.mobile-overlay-menu{display:none!important;}.mobile-menu-trigger{display:none!important;}}
+@media (max-width:900px){.mobile-menu-trigger{display:flex!important;}}
+#about>div{text-align:center;align-items:center;justify-content:center;display:flex;flex-direction:column;}
+nav ul{display:flex;flex-wrap:nowrap!important;white-space:nowrap;overflow-x:auto;max-width:100vw;gap:2rem;padding-bottom:2px;scrollbar-width:thin;scrollbar-color:#bbb #fff;}
+nav ul li{min-width:max-content;}
+nav{max-width:98vw!important;overflow-x:visible;}
+#about p{line-height:2.2;}
+#about p br{display:block;margin-bottom:1em;content:"";}
+/* Mobile show-detail-btn & animation projet */
+@media (max-width:900px){
+  .show-detail-btn { display: block !important; }
+}
+.project-detail-anim {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  filter: blur(2px);
+  box-shadow: 0 4px 15px rgba(30,30,30,0.03);
+  transition:
+    max-height .9s cubic-bezier(.4,.09,.18,1.01),
+    opacity .5s cubic-bezier(.4,.09,.18,1.01),
+    filter .5s cubic-bezier(.4,.09,.18,1.01),
+    padding .5s cubic-bezier(.4,.09,.18,1.01),
+    box-shadow .5s cubic-bezier(.4,.09,.18,1.01);
+}
+.project-detail-anim.open {
+  max-height: 800px;
+  opacity: 1;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  filter: blur(0);
+  box-shadow: 0 8px 32px rgba(30,30,30,0.07);
+}
+@media (min-width:901px){
+  .project-detail-anim, .show-detail-btn { display:none!important; }
+}
+  </style>
+</head>
+<body class="bg-surface-light dark:bg-surface-dark text-gray-900 dark:text-gray-100 font-inter relative transition-colors duration-500">
+
+  <!-- NAVIGATION (identique PC/mobile, hamburger à gauche sur mobile) -->
+ <nav id="mainNav"
+  class="fixed top-5 left-1/2 transform -translate-x-1/2 z-40 px-8 py-1.6  w-fit max-w-[98%] flex items-center justify-between gap-6 bg-transparent dark:bg-transparent backdrop-blur-md shadow-md shadow-glass border border-gray-200 dark:border-gray-700 rounded-3xl"
+  role="navigation" aria-label="Menu principal">
+  <!-- Hamburger visible sur mobile uniquement -->
+  <button class="mobile-menu-trigger flex md:hidden mr-4 border-none shadow-none bg-transparent dark:bg-transparent rounded-lg w-11 h-14 items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent"
+          aria-label="Ouvrir le menu" id="mobileMenuBtn">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="6" y1="9" x2="26" y2="9"/><line x1="6" y1="16" x2="26" y2="16"/><line x1="6" y1="23" x2="26" y2="23"/>
+    </svg>
+  </button>
+    <!-- Liens du menu : visibles sur md+ (PC/tablette), masqués sur mobile -->
+    <ul class="hidden md:flex gap-6 sm:gap-8 text-base font-medium text-gray-700 dark:text-gray-200">
+      <li><a href="#hero" class="hover-target">Accueil</a></li>
+      <li><a href="#experience" class="hover-target">Expérience</a></li>
+      <li><a href="#education" class="hover-target">Formation</a></li>
+      <li><a href="#projects" class="hover-target">Projets</a></li>
+      <li><a href="#skills" class="hover-target">Compétences</a></li>
+      <li><a href="#contact" class="hover-target">Contact</a></li>
+    </ul>
+    <div class="flex gap-0 items-center ml-20 pr-2">
+      <a class="social-link" href="https://www.instagram.com/centric.concept/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><path d="M16.5 7.5h.01"/><circle cx="12" cy="12" r="5"/>
+        </svg>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/clément-lenoble" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+  <!-- Menu latéral mobile overlay -->
+  <div class="mobile-overlay-menu" id="mobileOverlayMenu" aria-modal="true" role="dialog">
+    <div class="menu-header"><button class="close-btn" aria-label="Fermer le menu" id="closeMobileMenu">&times;</button></div>
+    <div class="menu-content">
+      <a href="#hero">Accueil</a>
+      <a href="#experience">Expérience</a>
+      <a href="#education">Formation</a>
+      <a href="#projects">Projets</a>
+      <a href="#skills">Compétences</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+ <main class="pt-6 sm:pt-36 space-y-8 sm:space-y-32 px-4 sm:px-8 max-w-5xl mx-auto">
+    <!-- Hero -->
+    <section id="hero" class="hero-content flex flex-row items-center gap-10 justify-center px-2 py-8 rounded-3xl bg-white/90 dark:bg-[#232323] shadow-md shadow-glass mt-8">
+      <div class="flex-1 flex flex-col items-center md:items-start">
+        <h2 class="text-4xl sm:text-5xl font-extrabold mb-2 text-[#222] dark:text-[#f1f1f1]">LENOBLE Clément</h2>
+        <p class="text-xl sm:text-2xl mb-6 text-gray-700 dark:text-gray-300">Etudiant en alternance chez Profalux.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="inline-block bg-accent hover:bg-accent-dark text-white font-semibold px-7 py-3 rounded-full shadow transition-colors focus:outline-none focus:ring-2 focus:ring-accent">Me contacter</a>
+          <a href="cv-clement-lenoble.pdf" download class="inline-block bg-white dark:bg-[#18181b] text-accent dark:text-white border-2 border-accent dark:border-white font-semibold px-7 py-3 rounded-full shadow transition-colors focus:outline-none focus:ring-2 focus:ring-accent hover:bg-accent hover:text-white dark:hover:bg-white/10 dark:hover:text-accent">Télécharger le CV</a>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center md:justify-end mt-0 md:mt-0 pr-8">
+        <img src="https://i.pinimg.com/736x/e7/0d/82/e70d829bf7ede43d86419a5be09e0507.jpg" alt="Photo de Clément Lenoble" class="w-28 h-28 rounded-2xl object-cover shadow-lg border border-gray-200 dark:border-gray-700" />
+      </div>
+    </section>
+    <section id="about" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-8 text-center text-[#222] dark:text-[#f1f1f1]">À propos</h2>
+      <div class="flex flex-col items-center gap-8">
+        <p class="text-lg sm:text-xl leading-relaxed text-[#222] dark:text-[#f1f1f1]">
+          👋 Bienvenue sur mon portfolio moi c'est clément et je suis passionné par le design, le web moderne et les expériences utilisateurs immersives.<br>
+      </div>
+    </section>
+    <section id="experience" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-2 text-[#222] dark:text-[#f1f1f1]">Expérience</h2>
+      <p class="text-gray-700 dark:text-gray-400 mb-8">Mon parcours professionnel et missions notables.</p>
+      <ol class="timeline-ol">
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">Alternant Qualité</h3><span class="timeline-date">Depuis septembre 2023</span></div><div class="timeline-tech">Profalux Thyez</div><div class="timeline-desc"><ul class="timeline-ul"><li>Réaliser un suivi des produits non conformes</li><li>Créer des indicateurs de performances</li><li>Intégrer des gammes de contrôle sur l'ERP</li></ul></div></li>
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">Auto-entrepreneur</h3><span class="timeline-date">Depuis novembre 2023</span></div><div class="timeline-tech">Centric concept Lyon</div><div class="timeline-desc"><ul class="timeline-ul"><li>Gérer les relations avec les fournisseurs</li><li>Dessiner et concevoir des articles</li><li>Gérer le site E-commerce</li><li>Gérer le flux administratif et financier</li></ul></div></li>
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">Job d'été</h3><span class="timeline-date">De juillet 2022 à août 2022</span></div><div class="timeline-tech">Service Techniques Samoëns</div><div class="timeline-desc"><ul class="timeline-ul"><li>Gérer les espaces verts</li><li>Tailler</li><li>Arroser</li><li>Tondre</li></ul></div></li>
+      </ol>
+    </section>
+    <section id="education" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-2 text-[#222] dark:text-[#f1f1f1]">Formation et diplômes</h2>
+      <p class="text-gray-700 dark:text-gray-400 mb-8">Mon parcours académique.</p>
+      <ol class="timeline-ol">
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">3ème Année BUT QLIO</h3><span class="timeline-date">Depuis 2022</span></div><div class="timeline-tech">IUT Lumière Lyon 2 Bron</div><div class="timeline-desc">BUT Qualité Logistique Industrielle et Organisation</div></li>
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">Diplôme National du Baccalauréat</h3><span class="timeline-date">2022</span></div><div class="timeline-tech">Option STI2D Cluses</div></li>
+        <li class="timeline-li"><span class="timeline-dot"></span><div class="timeline-header"><h3 class="timeline-title">Diplôme National des Jeunes Sapeurs Pompiers</h3><span class="timeline-date">2018–2021</span></div><div class="timeline-tech">Centre de Secours Samoëns</div></li>
+      </ol>
+    </section>
+    <!-- Projets animés -->
+    <section id="projects" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-2 text-[#222] dark:text-[#f1f1f1]">Projets</h2>
+      <p class="text-gray-700 dark:text-gray-400 mb-8">Quelques projets notables et réalisations.</p>
+      <ol class="timeline-ol" id="projects-list">
+        <li class="timeline-li" data-detail="0">
+          <span class="timeline-dot"></span>
+          <div class="timeline-header">
+            <h3 class="timeline-title flex items-center gap-2">Integration des gammes de contrôle sur l'ERP</h3>
+            <span class="timeline-date">2024-2025</span>
+          </div>
+          <div class="timeline-project-content">
+            <img src="https://cdn.brightanalytics.eu/wp-content/uploads/Sage-X3-logo.png" alt="Aperçu Portfolio" class="timeline-img" loading="lazy" style="width:120px;height:120px;" />
+            <div>
+              <div class="timeline-tech">HTML, CSS, JS, Tailwind, GitHub Pages</div>
+              <div class="timeline-desc">
+                <ul class="timeline-ul">
+                  <li>Site web responsive pour présenter mon parcours et mes réalisations</li>
+                  <li>Déploiement sur GitHub Pages</li>
+                  <li>Expérience utilisateur fluide, design épuré</li>
+                </ul>
+                <button class="show-detail-btn block md:hidden mt-2 text-blue-600 underline text-sm" type="button" style="display:none;">
+                  Voir la description détaillée
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="timeline-li" data-detail="1">
+          <span class="timeline-dot"></span>
+          <div class="timeline-header">
+            <h3 class="timeline-title flex items-center gap-2">Application Startboard</h3>
+            <span class="timeline-date">2024-2025</span>
+          </div>
+          <div class="timeline-project-content">
+            <img src="https://images.seeklogo.com/logo-png/39/2/ral-umwelt-logo-png_seeklogo-393293.png" alt="Aperçu Startboard" class="timeline-img" loading="lazy" style="width:120px;height:120px;" />
+            <div>
+              <div class="timeline-tech">React, Firebase</div>
+              <div class="timeline-desc">
+                <ul class="timeline-ul">
+                  <li>Gestion et priorisation de projets</li>
+                  <li>Stockage cloud et authentification</li>
+                  <li>Interface moderne et responsive</li>
+                </ul>
+                <button class="show-detail-btn block md:hidden mt-2 text-blue-600 underline text-sm" type="button" style="display:none;">
+                  Voir la description détaillée
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+    <section id="skills" class="max-w-3xl mx-auto mt-20 mb-20 px-2">
+      <h2 class="text-4xl font-extrabold mb-2 text-[#222] dark:text-[#f1f1f1] flex items-center justify-center">Compétences</h2>
+      <hr class="mb-8 border-gray-200 dark:border-gray-700">
+      <div class="flex flex-row justify-between items-start w-full gap-8">
+        <div class="flex flex-col items-center w-2/5">
+          <h3 class="text-xl font-bold mb-4 text-center">Métier</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <span class="skill-chip">Gestion des incidents fournisseurs</span>
+            <span class="skill-chip">Identifier les flux physiques et d'information</span>
+            <span class="skill-chip">Mise en application des outils QQOQCP, PDCA, 5S</span>
+          </div>
+        </div>
+        <div class="flex-1"></div>
+        <div class="flex flex-col items-center w-2/5">
+          <h3 class="text-xl font-bold mb-4 text-center">Informatique</h3>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <span class="skill-chip">Certification PIX</span>
+            <span class="skill-chip">Microsoft office</span>
+            <span class="skill-chip">Sage X3 Prologiciel EPR</span>
+            <span class="skill-chip">Figma</span>
+            <span class="skill-chip">Photoshop</span>
+            <span class="skill-chip">Solidworks</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="languages" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-8 text-center text-[#222] dark:text-[#f1f1f1]">Langues</h2>
+      <div class="flex flex-wrap justify-center gap-8">
+        <div class="flex flex-col items-center bg-white dark:bg-[#232323] rounded-2xl shadow-lg px-6 py-5 border border-gray-200 dark:border-gray-700 min-w-[120px] transition hover:scale-105 hover:shadow-xl">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full shadow bg-white dark:bg-[#232323] border-2 border-gray-200 dark:border-gray-700 mb-2">
+            <img src="https://hatscripts.github.io/circle-flags/flags/fr.svg" alt="Français" class="w-10 h-10" />
+          </span>
+          <span class="font-semibold text-lg text-[#222] dark:text-[#f1f1f1]">Français</span>
+          <span class="text-xs text-green-600 dark:text-green-400 font-bold mt-1 bg-green-100 dark:bg-green-900 px-2 py-0.5 rounded-full">Natif</span>
+        </div>
+        <div class="flex flex-col items-center bg-white dark:bg-[#232323] rounded-2xl shadow-lg px-6 py-5 border border-gray-200 dark:border-gray-700 min-w-[120px] transition hover:scale-105 hover:shadow-xl">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full shadow bg-white dark:bg-[#232323] border-2 border-gray-200 dark:border-gray-700 mb-2">
+            <img src="https://hatscripts.github.io/circle-flags/flags/gb.svg" alt="Anglais" class="w-10 h-10" />
+          </span>
+          <span class="font-semibold text-lg text-[#222] dark:text-[#f1f1f1]">Anglais</span>
+          <span class="text-xs text-yellow-600 dark:text-yellow-300 font-bold mt-1 bg-yellow-100 dark:bg-yellow-900 px-2 py-0.5 rounded-full">A2+</span>
+        </div>
+        <div class="flex flex-col items-center bg-white dark:bg-[#232323] rounded-2xl shadow-lg px-6 py-5 border border-gray-200 dark:border-gray-700 min-w-[120px] transition hover:scale-105 hover:shadow-xl">
+          <span class="inline-flex items-center justify-center w-16 h-16 rounded-full shadow bg-white dark:bg-[#232323] border-2 border-gray-200 dark:border-gray-700 mb-2">
+            <img src="https://hatscripts.github.io/circle-flags/flags/it.svg" alt="Italien" class="w-10 h-10" />
+          </span>
+          <span class="font-semibold text-lg text-[#222] dark:text-[#f1f1f1]">Italien</span>
+          <span class="text-xs text-blue-600 dark:text-blue-300 font-bold mt-1 bg-blue-100 dark:bg-blue-900 px-2 py-0.5 rounded-full">Notions</span>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="max-w-3xl mx-auto">
+      <h2 class="text-4xl font-extrabold mb-8 text-center text-[#222] dark:text-[#f1f1f1]">Contact</h2>
+      <div class="flex flex-col items-center">
+        <a href="mailto:monemail@example.com" class="bg-accent hover:bg-accent-dark text-white font-semibold px-10 py-4 rounded-full shadow transition-colors text-lg focus:outline-none focus:ring-2 focus:ring-accent">Me contacter par email</a>
+        <div class="social-links">
+          <a class="social-link" href="https://www.instagram.com/centric.concept/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><path d="M16.5 7.5h.01"/><circle cx="12" cy="12" r="5"/>
+            </svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/clément-lenoble" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0-4 0"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>© 2025 Clément Lenoble</footer>
+  <button id="scrollTopBtn" aria-label="Retour en haut">↑</button>
+  <script>
+     const sectionIds = [
+      "hero", "about", "experience", "education", "projects", "skills", "languages", "contact"
+    ];
+    const nav = document.getElementById('mainNav') || document.querySelector('nav');
+    function adaptNavWidth() {
+      if(window.innerWidth <= 900) {
+        nav.style.width = ""; // Reset sur mobile
+        return;
+      }
+      let currentSection = null;
+      let maxVisible = 0;
+      // On cherche la section la plus visible à l'écran
+      sectionIds.forEach(id => {
+        const sec = document.getElementById(id);
+        if(!sec) return;
+        const rect = sec.getBoundingClientRect();
+        // Portion visible
+        const visible = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+        if(visible > maxVisible) {
+          maxVisible = visible;
+          currentSection = sec;
+        }
+      });
+      if(currentSection) {
+        // Largeur réelle de la section (padding inclus)
+        const sectionWidth = currentSection.offsetWidth;
+        nav.style.width = sectionWidth + "px";
+      } else {
+        nav.style.width = ""; // fallback
+      }
+    }
+    // Recalcule à chaque scroll et resize
+    window.addEventListener('scroll', adaptNavWidth, {passive:true});
+    window.addEventListener('resize', adaptNavWidth);
+    window.addEventListener('DOMContentLoaded', adaptNavWidth);
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {scrollTopBtn.classList[window.scrollY>300?'add':'remove']('show')});
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+    // Navigation active link
+    const navLinks = document.querySelectorAll('nav ul li a');
+    function setActiveLink(){let y=window.scrollY+90;navLinks.forEach(l=>{let s=document.querySelector(l.getAttribute('href'));if(s&&s.offsetTop<=y&&s.offsetTop+s.offsetHeight>y)l.classList.add('active');else l.classList.remove('active');})}
+    window.addEventListener('scroll',setActiveLink);window.addEventListener('load',setActiveLink);
+
+    // Menu mobile hamburger (modifié pour bouton dans le nav)
+    const menuTrigger=document.getElementById('mobileMenuBtn'),overlayMenu=document.getElementById('mobileOverlayMenu'),closeBtn=document.getElementById('closeMobileMenu');
+    function openMobileMenu(){overlayMenu.classList.add('open');document.body.style.overflow='hidden';}
+    function closeMobileMenu(){overlayMenu.classList.remove('open');document.body.style.overflow='';}
+    menuTrigger.addEventListener('click',openMobileMenu);closeBtn.addEventListener('click',closeMobileMenu);
+    overlayMenu.addEventListener('click',e=>{if(e.target===overlayMenu)closeMobileMenu();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileMenu();});
+    overlayMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',e=>{closeMobileMenu();const href=link.getAttribute('href');if(href&&href.startsWith('#')){const s=document.querySelector(href);if(s){s.scrollIntoView({behavior:'smooth'});e.preventDefault();}}})});
+    function handleResize(){if(window.innerWidth<=900){/* rien à faire */}else{closeMobileMenu();}}
+    window.addEventListener('resize',handleResize);window.addEventListener('DOMContentLoaded',handleResize);
+
+    // Projets animés: mobile uniquement, bouton "voir la description détaillée"
+    const descriptions = [
+      `<div class="text-sm text-gray-800 dark:text-gray-100 px-8 py-6">
+        <strong>Description détaillée :</strong><br>
+        Ce projet consistait à intégrer des gammes de contrôle sur l’ERP Sage X3 de Profalux, automatisant la gestion qualité : génération d’indicateurs, suivi en temps réel, adaptation du workflow. J’ai conçu l’interface côté utilisateur, formé les équipes, assuré le reporting via GitHub Pages.<br>
+        <em>Compétences : intégration ERP, automatisation, UI, documentation.</em>
+      </div>`,
+      `<div class="text-sm text-gray-800 dark:text-gray-100 px-8 py-6">
+        <strong>Description détaillée :</strong><br>
+        Startboard est une webapp pour piloter des projets en équipe : planning visuel, backlog, affectation, notifications et suivi d’avancement. J’ai développé l’authentification via Firebase, toute la partie front-end React.<br>
+        <em>Compétences : React, Firebase Auth, UI/UX, gestion de projet agile.</em>
+      </div>`
+    ];
+    let currentDetail = null;
+    function removeDetail() {
+      if (currentDetail) {
+        currentDetail.detail.classList.remove('open');
+        setTimeout(() => currentDetail.detail && currentDetail.detail.remove(), 450);
+        currentDetail = null;
+      }
+    }
+    function insertDetail(li, idx, btn) {
+      removeDetail();
+      const detail = document.createElement('div');
+      detail.className = "project-detail-anim bg-white dark:bg-[#232323] rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 mt-2 mb-4 open";
+      detail.innerHTML = descriptions[idx];
+      btn.closest('.timeline-desc').after(detail);
+      currentDetail = {li, detail};
+      setTimeout(() => { detail.scrollIntoView({behavior:'smooth', block:'start'}); }, 100);
+    }
+    document.querySelectorAll('.show-detail-btn').forEach((btn, idx) => {
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        const li = btn.closest('.timeline-li');
+        if (currentDetail && currentDetail.li === li) { removeDetail(); return; }
+        insertDetail(li, li.dataset.detail, btn);
+      });
+    });
+    window.addEventListener('click', e => {
+      if(window.innerWidth>900) return;
+      if(currentDetail && !currentDetail.detail.contains(e.target) && !e.target.classList.contains('show-detail-btn'))
+        removeDetail();
+    });
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth>900) removeDetail();
+    });
+  </script>
+</body>
+</html>
